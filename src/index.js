@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+import { normalize } from 'styled-normalize';
 
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
-const MainWrapper = styled.div`
-  background-color: #dff9fb;
+const GlobalStyle = createGlobalStyle`
+  ${normalize}
 `;
 
 class App extends Component {
@@ -16,10 +17,11 @@ class App extends Component {
 
   render() {
     return (
-      <MainWrapper>
+      <>
+        <GlobalStyle />
         <TodoForm />
         <TodoList />
-      </MainWrapper>
+      </>
     );
   }
 }
