@@ -6,7 +6,8 @@ class Todo extends Component {
   }
 
   render() {
-    return <li>공부하기</li>;
+    const { title, id, status } = this.props;
+    return <li id={id}>{title}</li>;
   }
 }
 

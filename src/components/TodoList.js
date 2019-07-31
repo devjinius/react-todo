@@ -16,6 +16,30 @@ const Header = styled.div`
 class TodoList extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { todos: [] };
+  }
+
+  async componentDidMount() {
+    const { body } = await this.getData();
+    this.setState({ todos: body });
+  }
+
+  async getData() {
+    try {
+      const rawData = await fetch(
+        'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist'
+      );
+      return rawData.json();
+    } catch (e) {
+      console.log(e);
+      return { body: [], error: e };
+    }
+  }
+
+  getTodos() {
+    const { todos } = this.state;
+    return todos.map(todo => <Todo key={todo.id} {...todo} />);
   }
 
   clickHandler(e) {
@@ -23,6 +47,8 @@ class TodoList extends Component {
   }
 
   render() {
+    const todos = this.getTodos();
+
     return (
       <>
         <Header>
@@ -32,12 +58,7 @@ class TodoList extends Component {
           </Button>
         </Header>
 
-        <ul>
-          <Todo />
-          <Todo />
-          <Todo />
-          <Todo />
-        </ul>
+        <ul>{todos}</ul>
       </>
     );
   }
