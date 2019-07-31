@@ -11,7 +11,9 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const ContentWrapper = styled.div`
+  width: 500px;
   margin: 2rem;
+  box-sizing: border-box;
 `;
 
 class App extends Component {

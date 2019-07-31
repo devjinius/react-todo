@@ -5,7 +5,8 @@ import Button from './BasicButton';
 
 const Form = styled.form`
   display: flex;
-  width: 20rem;
+  width: 100%;
+  box-sizing: border-box;
 
   & :focus {
     outline: none;
@@ -13,13 +14,14 @@ const Form = styled.form`
 `;
 
 const InputWrapper = styled.div`
-  display: flex
-  widht: 15rem
+  display: flex;
   margin-left: 0.4rem;
+  align-items: center;
 `;
 
 const Input = styled.input`
   width: 3rem;
+  height: 1.5rem;
   border: solid 1px #4a69bd;
   border-radius: 15px;
   transition: width 1s, border-radius 1s;

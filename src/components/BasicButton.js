@@ -14,6 +14,10 @@ const Button = styled.button`
     color: #fff
     background-color: #4a69bd;
   }
+
+  &:focus{
+    outline: none;
+  }
 `;
 
 class BasicButton extends Component {
@@ -23,7 +27,11 @@ class BasicButton extends Component {
 
   render() {
     const { height } = this.props;
-    return <Button height={height}>{this.props.children}</Button>;
+    return (
+      <Button height={height} onClick={this.props.onClick}>
+        {this.props.children}
+      </Button>
+    );
   }
 }
 
