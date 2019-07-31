@@ -13,6 +13,10 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
+const Ul = styled.ul`
+  padding-left: 2rem;
+`;
+
 class TodoList extends Component {
   constructor(props) {
     super(props);
@@ -53,12 +57,10 @@ class TodoList extends Component {
       <>
         <Header>
           <h3>해야할 일들</h3>
-          <Button height="2.5rem" onClick={this.clickHandler.bind(this)}>
-            접기
-          </Button>
+          <Button onClick={this.clickHandler.bind(this)}>접기</Button>
         </Header>
 
-        <ul>{todos}</ul>
+        <Ul>{todos}</Ul>
       </>
     );
   }
