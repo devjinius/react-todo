@@ -4,7 +4,8 @@
   "description": "React based todo application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack --mode development && webpack-dev-server --open --mode development",
+    "start:dev": "webpack-dev-server --mode development --content-base src --open --hot --inline",
+    "start:buildTest": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production"
   },
