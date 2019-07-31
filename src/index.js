@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
 import TodoForm from './components/TodoForm';
@@ -8,6 +8,10 @@ import TodoList from './components/TodoList';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
+`;
+
+const ContentWrapper = styled.div`
+  margin: 2rem;
 `;
 
 class App extends Component {
@@ -19,8 +23,10 @@ class App extends Component {
     return (
       <>
         <GlobalStyle />
-        <TodoForm />
-        <TodoList />
+        <ContentWrapper>
+          <TodoForm />
+          <TodoList />
+        </ContentWrapper>
       </>
     );
   }
