@@ -21,28 +21,40 @@ class TodoList extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { todos: [] };
+    this.state = { todos: [], error: undefined };
   }
 
   async componentDidMount() {
-    const { body } = await this.getData();
-    this.setState({ todos: body });
+    const { body, error } = await this.getData();
+    this.setState({ todos: body, error });
   }
 
   async getData() {
     try {
       const rawData = await fetch(
-        'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist'
+        'https://h3rb9c0ugl.execute-api.ap-northeast-2.amazonaws.com/develop/todolist/'
       );
-      return rawData.json();
+      const jsonData = await rawData.json();
+
+      if (/^2/.test(jsonData.statusCode)) {
+        return jsonData;
+      }
+
+      if (/^4/.test(jsonData.statusCode)) {
+        throw new Error(`clientError statusCode: ${jsonData.statusCode}`);
+      }
+
+      if (/^5/.test(jsonData.statusCode)) {
+        throw new Error(`serverError statusCode: ${jsonData.statusCode}`);
+      }
+
+      throw new Error(`알 수 없는 에러입니다. errorData ${jsonData}`);
     } catch (e) {
-      console.log(e);
       return { body: [], error: e };
     }
   }
 
-  getTodos() {
-    const { todos } = this.state;
+  getTodoComponents(todos) {
     return todos.map(todo => <Todo key={todo.id} {...todo} />);
   }
 
@@ -51,7 +63,7 @@ class TodoList extends Component {
   }
 
   render() {
-    const todos = this.getTodos();
+    const { todos, error } = this.state;
 
     return (
       <>
@@ -60,7 +72,7 @@ class TodoList extends Component {
           <Button onClick={this.clickHandler.bind(this)}>접기</Button>
         </Header>
 
-        <Ul>{todos}</Ul>
+        {!!error ? '에러가 발생했습니다.' : <Ul>{this.getTodoComponents(todos)}</Ul>}
       </>
     );
   }
