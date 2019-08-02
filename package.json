@@ -4,7 +4,7 @@
   "description": "React based todo application",
   "main": "index.js",
   "scripts": {
-    "start:dev": "webpack-dev-server --mode development --content-base src --open --hot --inline",
+    "start:dev": "webpack-dev-server --mode development --content-base src --open",
     "start:buildTest": "webpack-dev-server --mode development --open",
     "dev": "webpack --mode development",
     "build": "webpack --mode production"
@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/eugene94/javascript-web-todo#readme",
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
+    "@babel/runtime-corejs3": "^7.5.5",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "styled-components": "^4.3.2",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
