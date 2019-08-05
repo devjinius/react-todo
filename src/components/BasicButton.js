@@ -11,11 +11,11 @@ const Button = styled.button`
   transition: color 0.4s, background-color 0.4s;
 
   &:hover {
-    color: #fff
+    color: #fff;
     background-color: #4a69bd;
   }
 
-  &:focus{
+  &:focus {
     outline: none;
   }
 `;

@@ -22,13 +22,13 @@ const InputWrapper = styled.div`
 const Input = styled.input`
   width: 3rem;
   height: 1.5rem;
-  border: solid 1px #4a69bd;
-  border-radius: 15px;
-  transition: width 1s, border-radius 1s;
+  border: none;
+  border-bottom: double 3px #4a69bd;
+  transition: width 0.4s ease-in-out;
 
   &:focus {
-    width: 10rem;
-    border-radius: 3px;
+    width: 14rem;
+    outline: none;
   }
 `;
 
@@ -44,10 +44,10 @@ class TodoForm extends Component {
   render() {
     return (
       <Form>
-        <Label htmlFor="todo">할 일 : </Label>
+        <Label htmlFor="todo">할 일</Label>
         <InputWrapper>
           <Input name="todo" id="todo" />
-          <Button>등록</Button>
+          <Button onClick={e => e.preventDefault()}>등록</Button>
         </InputWrapper>
       </Form>
     );
