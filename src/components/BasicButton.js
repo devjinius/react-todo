@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
-  margin: 0px 0.3rem
-  height: ${props => props.height || '1.8rem'}
+  margin: 0px 0.3rem;
+  height: ${props => props.height || '1.8rem'};
   color: #4a69bd;
   background-color: transparent;
   border: solid 1px #4a69bd;

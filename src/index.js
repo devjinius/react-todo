@@ -4,7 +4,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
 import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import TodoShow from './components/TodoShow';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -27,7 +27,7 @@ class App extends Component {
         <GlobalStyle />
         <ContentWrapper>
           <TodoForm />
-          <TodoList />
+          <TodoShow />
         </ContentWrapper>
       </>
     );
