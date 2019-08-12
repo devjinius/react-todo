@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import Button from './BasicButton';
@@ -36,22 +36,16 @@ const Label = styled.label`
   line-height: 1.6;
 `;
 
-class TodoForm extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <Form>
-        <Label htmlFor="todo">할 일</Label>
-        <InputWrapper>
-          <Input name="todo" id="todo" />
-          <Button onClick={e => e.preventDefault()}>등록</Button>
-        </InputWrapper>
-      </Form>
-    );
-  }
-}
+const TodoForm = () => {
+  return (
+    <Form>
+      <Label htmlFor="todo">할 일</Label>
+      <InputWrapper>
+        <Input name="todo" id="todo" />
+        <Button onClick={e => e.preventDefault()}>등록</Button>
+      </InputWrapper>
+    </Form>
+  );
+};
 
 export default TodoForm;

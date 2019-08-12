@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Button = styled.button`
@@ -28,20 +28,13 @@ const Li = styled.li`
   box-sizing: border-box;
 `;
 
-class Todo extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const { title, id, status } = this.props;
-    return (
-      <Li data-id={id}>
-        {title}
-        <Button>x</Button>
-      </Li>
-    );
-  }
-}
+const Todo = ({ title, id, status }) => {
+  return (
+    <Li data-id={id}>
+      {title}
+      <Button>x</Button>
+    </Li>
+  );
+};
 
 export default Todo;
