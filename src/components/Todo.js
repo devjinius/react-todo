@@ -28,11 +28,11 @@ const Li = styled.li`
   box-sizing: border-box;
 `;
 
-const Todo = ({ title, id, status }) => {
+const Todo = ({ title, id, status, onRemoveClick }) => {
   return (
     <Li data-id={id}>
       {title}
-      <Button>x</Button>
+      <Button onClick={onRemoveClick}>x</Button>
     </Li>
   );
 };

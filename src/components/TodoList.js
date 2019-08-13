@@ -8,10 +8,18 @@ const Ul = styled.ul`
   padding-left: 2rem;
 `;
 
-const getTodoComponents = todos => todos.map(todo => <Todo key={todo.id} {...todo} />);
-
 const TodoList = () => {
-  const { todos, loading, error } = useContext(GlobalContext);
+  const { todos, setTodos, loading, error } = useContext(GlobalContext);
+
+  const removeHandler = id => {
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+  };
+
+  const getTodoComponents = todos =>
+    todos.map(todo => (
+      <Todo key={todo.id} {...todo} onRemoveClick={() => removeHandler(todo.id)} />
+    ));
 
   if (loading) {
     return '로딩중입니다만...';
