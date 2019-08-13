@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
+import { makeId } from 'simple-util-js'; // 직접만든 util입니다.
 
 import { GlobalContext } from './App';
 import Button from './BasicButton';
@@ -49,7 +50,7 @@ const TodoForm = () => {
     setTodos([
       ...todos,
       {
-        id: 5,
+        id: makeId(),
         title: newTodo,
         status: 'todo'
       }

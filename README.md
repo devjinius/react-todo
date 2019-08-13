@@ -7,7 +7,7 @@
 - [x] hooks api를 사용하여 모두 함수형 컴포넌트로 변경
 - [x] Express를 사용해서 API 서버환경을 만든다.
 - [x] loading 메시지 표시
-- [] add todo
+- [x] add todo
 - [] delete todo
 - [] todo -> done
 - [] 접기/펴기
