@@ -13,4 +13,4 @@
 - [x] todo -> done
 - [x] 접기/펴기
 - [x] useFetch 사용하여 custom hook 생성
-- [] 추가 UI 구성
+- [x] 추가 UI 구성
