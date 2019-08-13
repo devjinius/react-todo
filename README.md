@@ -9,7 +9,7 @@
 - [x] loading 메시지 표시
 - [x] add todo
 - [x] delete todo
-- [] add todo with empty value prevent
+- [x] add todo with empty value prevent
 - [] todo -> done
 - [] 접기/펴기
 - [x] useFetch 사용하여 custom hook 생성

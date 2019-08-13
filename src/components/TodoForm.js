@@ -47,6 +47,11 @@ const TodoForm = () => {
   };
 
   const addTodo = e => {
+    if (!newTodo) {
+      e.preventDefault();
+      return;
+    }
+
     setTodos([
       ...todos,
       {
