@@ -25,6 +25,7 @@ const clickHandler = e => {
 const TodoShow = () => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     useFetch({
@@ -32,6 +33,7 @@ const TodoShow = () => {
       errorFn: setError,
       url: 'http://localhost:3000/todos'
     });
+    setLoading(false);
   }, []);
 
   return (
@@ -41,7 +43,7 @@ const TodoShow = () => {
         <Button onClick={clickHandler}>접기</Button>
       </Header>
 
-      <TodoList todos={todos} error={error} />
+      <TodoList todos={todos} error={error} loading={loading} />
     </>
   );
 };

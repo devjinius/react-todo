@@ -9,8 +9,16 @@ const Ul = styled.ul`
 
 const getTodoComponents = todos => todos.map(todo => <Todo key={todo.id} {...todo} />);
 
-const TodoList = ({ todos, error }) => {
-  const todoComponents = !!error ? '=( 에러가 발생했습니다.' : getTodoComponents(todos);
+const TodoList = ({ todos, error, loading }) => {
+  if (loading) {
+    return '로딩중입니다만...';
+  }
+
+  if (!!error) {
+    return '=( 에러가 발생했습니다.';
+  }
+
+  const todoComponents = getTodoComponents(todos);
 
   return <Ul>{todoComponents}</Ul>;
 };
