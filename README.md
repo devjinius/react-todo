@@ -10,7 +10,7 @@
 - [x] add todo
 - [x] delete todo
 - [x] add todo with empty value prevent
-- [] todo -> done
+- [x] todo -> done
 - [] 접기/펴기
 - [x] useFetch 사용하여 custom hook 생성
 - [] 추가 UI 구성

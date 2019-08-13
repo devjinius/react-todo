@@ -16,9 +16,23 @@ const TodoList = () => {
     setTodos(newTodos);
   };
 
+  const toggleStatus = id => {
+    const newTodos = todos.map(todo => {
+      if (todo.id === id) todo.status = todo.status === 'todo' ? 'done' : 'todo';
+      return todo;
+    });
+
+    setTodos(newTodos);
+  };
+
   const getTodoComponents = todos =>
     todos.map(todo => (
-      <Todo key={todo.id} {...todo} onRemoveClick={() => removeHandler(todo.id)} />
+      <Todo
+        key={todo.id}
+        {...todo}
+        onRemoveClick={() => removeHandler(todo.id)}
+        toggleStatus={() => toggleStatus(todo.id)}
+      />
     ));
 
   if (loading) {

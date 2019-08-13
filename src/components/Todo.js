@@ -16,7 +16,7 @@ const Button = styled.button`
   }
 `;
 
-const Li = styled.li`
+const Item = styled.li`
   display: flex;
   align-items: center;
   width: 100%;
@@ -28,12 +28,23 @@ const Li = styled.li`
   box-sizing: border-box;
 `;
 
-const Todo = ({ title, id, status, onRemoveClick }) => {
+const TodoTitle = styled.p`
+  text-decoration: ${props => (props.status === 'done' ? 'line-through' : 'none')};
+`;
+
+const Todo = ({ title, id, status, onRemoveClick, toggleStatus }) => {
   return (
-    <Li data-id={id}>
-      {title}
-      <Button onClick={onRemoveClick}>x</Button>
-    </Li>
+    <Item data-id={id} onClick={toggleStatus}>
+      <TodoTitle status={status}>{title}</TodoTitle>
+      <Button
+        onClick={e => {
+          e.stopPropagation();
+          onRemoveClick(id);
+        }}
+      >
+        x
+      </Button>
+    </Item>
   );
 };
 
