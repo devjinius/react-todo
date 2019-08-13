@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import Todo from './Todo';
-import { GlobalContext } from './App';
+import { GlobalContext } from '../store/TodoStore';
 
 const List = styled.ul`
   padding-left: 2rem;

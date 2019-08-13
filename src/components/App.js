@@ -1,13 +1,11 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import { normalize } from 'styled-normalize';
 
+import TodoStore from '../store/TodoStore';
 import Header from './Header';
 import TodoForm from './TodoForm';
 import TodoShow from './TodoShow';
-
-import { todoReducer } from '../reducer';
-import useFetch from '../hooks/useFetch';
 
 const GlobalStyle = createGlobalStyle`
   ${normalize}
@@ -28,24 +26,11 @@ const Conetents = styled.div`
   box-sizing: border-box;
 `;
 
-export const GlobalContext = React.createContext();
-
 const App = () => {
-  const [error, setError] = useState('');
-  const [todos, dispatch] = useReducer(todoReducer, [{ title: '', id: '', status: 'todo' }]);
-
-  const todoInitFn = data => dispatch({ type: 'INIT', payload: data });
-
-  const loading = useFetch({
-    fn: todoInitFn,
-    errorFn: setError,
-    url: 'http://localhost:3000/todos'
-  });
-
   return (
     <>
       <GlobalStyle />
-      <GlobalContext.Provider value={{ todos, dispatch, error, loading }}>
+      <TodoStore>
         <Wrapper>
           <Header />
           <Conetents>
@@ -53,7 +38,7 @@ const App = () => {
             <TodoShow />
           </Conetents>
         </Wrapper>
-      </GlobalContext.Provider>
+      </TodoStore>
     </>
   );
 };

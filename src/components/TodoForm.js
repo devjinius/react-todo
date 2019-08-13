@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { GlobalContext } from './App';
+import { GlobalContext } from '../store/TodoStore';
 import Button from './BasicButton';
 
 const Form = styled.form`
