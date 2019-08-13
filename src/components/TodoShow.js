@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import useFetch from '../hooks/useFetch';
 import TodoList from './TodoList';
 import Button from './BasicButton';
 
@@ -14,28 +13,11 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const Ul = styled.ul`
-  padding-left: 2rem;
-`;
-
 const clickHandler = e => {
   console.log('접었다!');
 };
 
 const TodoShow = () => {
-  const [todos, setTodos] = useState([]);
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    useFetch({
-      fn: setTodos,
-      errorFn: setError,
-      url: 'http://localhost:3000/todos'
-    });
-    setLoading(false);
-  }, []);
-
   return (
     <>
       <Header>
@@ -43,7 +25,7 @@ const TodoShow = () => {
         <Button onClick={clickHandler}>접기</Button>
       </Header>
 
-      <TodoList todos={todos} error={error} loading={loading} />
+      <TodoList />
     </>
   );
 };

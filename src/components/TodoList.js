@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import Todo from './Todo';
+import { GlobalContext } from './App';
 
 const Ul = styled.ul`
   padding-left: 2rem;
@@ -9,7 +10,9 @@ const Ul = styled.ul`
 
 const getTodoComponents = todos => todos.map(todo => <Todo key={todo.id} {...todo} />);
 
-const TodoList = ({ todos, error, loading }) => {
+const TodoList = () => {
+  const { todos, loading, error } = useContext(GlobalContext);
+
   if (loading) {
     return '로딩중입니다만...';
   }
