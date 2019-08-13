@@ -1,24 +1,47 @@
-export default async ({ fn, errorFn, url }) => {
-  try {
-    const rawData = await fetch(url);
-    const jsonData = await rawData.json();
+import { useState, useEffect } from 'react';
 
-    if (/^2/.test(jsonData.statusCode)) {
-      fn(jsonData.body);
-      return;
+export default ({ fn, errorFn, url }) => {
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
+    setLoading(true);
+    try {
+      const rawData = await fetch(url);
+      const jsonData = await rawData.json();
+      const [message, isSuccess] = errorReader(jsonData.statusCode);
+
+      if (isSuccess) {
+        fn(jsonData.body);
+      } else {
+        throw new Error(message);
+      }
+    } catch (e) {
+      console.log(e);
+      errorFn(e);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    if (/^4/.test(jsonData.statusCode)) {
-      throw new Error(`clientError statusCode: ${jsonData.statusCode}`);
-    }
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-    if (/^5/.test(jsonData.statusCode)) {
-      throw new Error(`serverError statusCode: ${jsonData.statusCode}`);
-    }
+  return loading;
+};
 
-    throw new Error(`알 수 없는 에러입니다. errorData : ${jsonData}`);
-  } catch (e) {
-    console.log(e);
-    return errorFn(e);
+const errorReader = statusCode => {
+  if (/^2/.test(statusCode)) {
+    return ['success', true];
   }
+
+  if (/^4/.test(statusCode)) {
+    return [`clientError statusCode: ${statusCode}`, false];
+  }
+
+  if (/^5/.test(statusCode)) {
+    return [`serverError statusCode: ${statusCode}`, false];
+  }
+
+  return [`알 수 없는 에러입니다. statusCode: ${statusCode}`, false];
 };

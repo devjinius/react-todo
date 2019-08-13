@@ -22,16 +22,12 @@ export const GlobalContext = React.createContext();
 const App = () => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    useFetch({
-      fn: setTodos,
-      errorFn: setError,
-      url: 'http://localhost:3000/todos'
-    });
-    setLoading(false);
-  }, []);
+  const loading = useFetch({
+    fn: setTodos,
+    errorFn: setError,
+    url: 'http://localhost:3000/todos'
+  });
 
   return (
     <>
