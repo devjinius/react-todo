@@ -11,6 +11,11 @@ const Button = styled.button`
   border: 1px solid #ee5253;
   border-radius: 15px;
 
+  &:hover {
+    cursor: pointer;
+    background-color: #ff2121;
+  }
+
   &:focus {
     outline: none;
   }
@@ -26,6 +31,11 @@ const Item = styled.li`
   border: 0.1px solid #cfd6ee;
   box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
+
+  &:hover {
+    background-color: #f1f3f5;
+    cursor: pointer;
+  }
 `;
 
 const TodoTitle = styled.p`
@@ -33,17 +43,18 @@ const TodoTitle = styled.p`
 `;
 
 const Todo = ({ title, id, status, onRemoveClick, toggleStatus }) => {
+  const confirmDelete = ({ e, title, id }) => {
+    e.stopPropagation();
+
+    if (confirm(`${title}을 정말로 삭제하시겠습니까?`)) {
+      onRemoveClick(id);
+    }
+  };
+
   return (
     <Item data-id={id} onClick={toggleStatus}>
       <TodoTitle status={status}>{title}</TodoTitle>
-      <Button
-        onClick={e => {
-          e.stopPropagation();
-          onRemoveClick(id);
-        }}
-      >
-        x
-      </Button>
+      <Button onClick={e => confirmDelete({ e, title, id })}>x</Button>
     </Item>
   );
 };
