@@ -1,6 +1,5 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { makeId } from 'simple-util-js'; // 직접만든 util입니다.
 
 import { GlobalContext } from './App';
 import Button from './BasicButton';
@@ -40,7 +39,7 @@ const Label = styled.label`
 
 const TodoForm = () => {
   const [newTodo, setNewTodo] = useState('');
-  const { todos, setTodos } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
 
   const changeNewTodo = ({ target: { value } }) => {
     setNewTodo(value);
@@ -52,14 +51,7 @@ const TodoForm = () => {
       return;
     }
 
-    setTodos([
-      ...todos,
-      {
-        id: makeId(),
-        title: newTodo,
-        status: 'todo'
-      }
-    ]);
+    dispatch({ type: 'ADD', payload: newTodo });
 
     setNewTodo('');
     e.preventDefault();

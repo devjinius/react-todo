@@ -9,21 +9,11 @@ const List = styled.ul`
 `;
 
 const TodoList = () => {
-  const { todos, setTodos, loading, error } = useContext(GlobalContext);
+  const { todos, dispatch, loading, error } = useContext(GlobalContext);
 
-  const removeHandler = id => {
-    const newTodos = todos.filter(todo => todo.id !== id);
-    setTodos(newTodos);
-  };
+  const removeHandler = id => dispatch({ type: 'DELETE', payload: id });
 
-  const toggleStatus = id => {
-    const newTodos = todos.map(todo => {
-      if (todo.id === id) todo.status = todo.status === 'todo' ? 'done' : 'todo';
-      return todo;
-    });
-
-    setTodos(newTodos);
-  };
+  const toggleStatus = id => dispatch({ type: 'TOGGLE_STATUS', payload: id });
 
   const getTodoComponents = todos =>
     todos.map(todo => (
