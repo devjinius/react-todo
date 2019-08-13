@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import TodoList from './TodoList';
@@ -13,11 +13,13 @@ const Header = styled.div`
   justify-content: space-between;
 `;
 
-const clickHandler = e => {
-  console.log('접었다!');
-};
-
 const TodoShow = () => {
+  const [folded, setFolded] = useState(false);
+
+  const clickHandler = e => {
+    setFolded(!folded);
+  };
+
   return (
     <>
       <Header>
@@ -25,7 +27,7 @@ const TodoShow = () => {
         <Button onClick={clickHandler}>접기</Button>
       </Header>
 
-      <TodoList />
+      {folded || <TodoList />}
     </>
   );
 };

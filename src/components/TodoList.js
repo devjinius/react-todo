@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Todo from './Todo';
 import { GlobalContext } from './App';
 
-const Ul = styled.ul`
+const List = styled.ul`
   padding-left: 2rem;
 `;
 
@@ -45,7 +45,7 @@ const TodoList = () => {
 
   const todoComponents = getTodoComponents(todos);
 
-  return <Ul>{todoComponents}</Ul>;
+  return <List>{todoComponents}</List>;
 };
 
 export default TodoList;
