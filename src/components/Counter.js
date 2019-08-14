@@ -14,6 +14,11 @@ const Circle = styled.div`
   color: #fff;
   font-size: 2rem;
   text-decoration: ${props => (props.status === 'done' ? 'line-through' : 'none')};
+  transition: transform 0.4s ease;
+
+  &:hover {
+    transform: scale(1.3);
+  }
 `;
 
 const Counter = ({ children, color, status }) => {
