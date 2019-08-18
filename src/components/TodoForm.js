@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 
-import { GlobalContext } from '../store/TodoStore';
+import { TodoContext } from '../store/TodoStore';
 import Button from './BasicButton';
 
 const Form = styled.form`
@@ -39,7 +39,7 @@ const Label = styled.label`
 
 const TodoForm = () => {
   const [newTodo, setNewTodo] = useState('');
-  const { dispatch } = useContext(GlobalContext);
+  const { dispatch } = useContext(TodoContext);
 
   const changeNewTodo = ({ target: { value } }) => {
     setNewTodo(value);

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { GlobalContext } from '../store/TodoStore';
+import { TodoContext } from '../store/TodoStore';
 import Counter from './Counter';
 
 const Wrapper = styled.div`
@@ -21,15 +21,15 @@ const getLengthByStatus = todos => {
 };
 
 const Header = () => {
-  const { todos } = useContext(GlobalContext);
+  const { todos, loading } = useContext(TodoContext);
   const { todoLength, doneLength } = getLengthByStatus(todos);
 
   return (
     <Wrapper>
-      <Counter color={'#27ae60'} status={'todo'}>
+      <Counter color={'#27ae60'} status={'todo'} loading={loading ? 1 : 0}>
         {todoLength}
       </Counter>
-      <Counter color={'#c1adae'} status={'done'}>
+      <Counter color={'#c1adae'} status={'done'} loading={loading ? 1 : 0}>
         {doneLength}
       </Counter>
     </Wrapper>

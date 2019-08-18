@@ -2,7 +2,7 @@ import React, { useState, useReducer } from 'react';
 import { todoReducer } from '../reducer';
 import useFetch from '../hooks/useFetch';
 
-export const GlobalContext = React.createContext();
+export const TodoContext = React.createContext();
 
 const TodoStore = ({ children }) => {
   const [error, setError] = useState('');
@@ -17,9 +17,9 @@ const TodoStore = ({ children }) => {
   });
 
   return (
-    <GlobalContext.Provider value={{ todos, dispatch, error, loading }}>
+    <TodoContext.Provider value={{ todos, dispatch, error, loading }}>
       {children}
-    </GlobalContext.Provider>
+    </TodoContext.Provider>
   );
 };
 
