@@ -13,6 +13,8 @@ app.get('/todos', function(req, res) {
   res.end(JSON.stringify(result));
 });
 
+app.use(express.static('../dist'));
+
 app.listen(3000, function() {
   console.log('Example app listening on port 3000!');
 });
