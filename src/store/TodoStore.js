@@ -13,7 +13,7 @@ const TodoStore = ({ children }) => {
   const loading = useFetch({
     fn: todoInitFn,
     errorFn: setError,
-    url: 'http://localhost:3000/todos'
+    url: 'http://ec2-13-209-21-156.ap-northeast-2.compute.amazonaws.com:3000/todos'
   });
 
   return (
