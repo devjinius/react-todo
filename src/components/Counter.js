@@ -21,14 +21,15 @@ const Circle = styled.div`
   line-height: 5rem;
   display: inline-block;
   margin: 0 1rem;
-  background-color: ${props => props.color};
+  background-color: ${({ color }) => color};
   border-radius: 50%;
   text-align: center;
   vertical-align: middle;
   color: #fff;
   font-size: 2rem;
-  text-decoration: ${props => (props.status === 'done' ? 'line-through' : 'none')};
-  transition: transform 0.4s ease;
+  text-decoration: ${({ status }) => (status === 'done' ? 'line-through' : 'none')};
+  opacity: ${({ loading }) => (loading ? 0 : 1)};
+  transition: transform 0.4s ease, opacity 0.4s ease;
   ${highlightAnimation}
 
   &:hover {
@@ -36,11 +37,11 @@ const Circle = styled.div`
   }
 `;
 
-const Counter = ({ children, color, status }) => {
+const Counter = ({ children, color, status, loading }) => {
   return (
     // key={children} 이 부분은
     // children이 변경되면 rerender가 발생해서 animation이 항상 작동하도록 의도함
-    <Circle color={color} status={status} key={children}>
+    <Circle color={color} status={status} key={children} loading={loading}>
       {children}
     </Circle>
   );

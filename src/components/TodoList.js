@@ -2,14 +2,14 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import Todo from './Todo';
-import { GlobalContext } from '../store/TodoStore';
+import { TodoContext } from '../store/TodoStore';
 
 const List = styled.ul`
   padding-left: 2rem;
 `;
 
 const TodoList = () => {
-  const { todos, dispatch, loading, error } = useContext(GlobalContext);
+  const { todos, dispatch, loading, error } = useContext(TodoContext);
 
   const removeHandler = id => dispatch({ type: 'DELETE', payload: id });
 

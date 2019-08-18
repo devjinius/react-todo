@@ -4,6 +4,7 @@ const cors = require('cors');
 
 const app = express();
 app.use(cors());
+app.use(express.static('../dist'));
 
 app.get('/todos', function(req, res) {
   const data = JSON.parse(fs.readFileSync('./todoData.json', { encoding: 'utf8' }));
